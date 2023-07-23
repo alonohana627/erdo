@@ -6,7 +6,8 @@
 TEST(VectorTest, BasicTest) {
   using erdo::Rational;
 
-  const std::vector<Rational<int>> veci{Rational<int>(1, 2), Rational<int>(2, 3)};
+  const std::vector<Rational<int>> veci{Rational<int>(1, 2),
+                                        Rational<int>(2, 3)};
   erdo::Vector<Rational<int>> vec(veci);
   vec[1] = veci[0];
 
@@ -16,14 +17,19 @@ TEST(VectorTest, BasicTest) {
 
 TEST(VectorTest, DotProduct) {
   using erdo::Vector;
-  const std::vector vec{1, 2, 3, 4};
+  long long int num = 0L;
 
-  const Vector<int> vec1{vec};
-  const Vector<int> vec2{vec};
+  std::vector<long long int> vec = std::vector<long long int>(10000);
+  std::generate_n(vec.begin(), 10000, [&](){
+    return num++;
+  });
+
+  const Vector<long long int> vec1{vec};
+  const Vector<long long int> vec2{vec};
 
   const auto dotResult = vec1.dot(vec2);
 
-  EXPECT_EQ(dotResult, 30);
+  EXPECT_EQ(dotResult, 333283335000L);
 }
 
 int main(int argc, char *argv[]) {

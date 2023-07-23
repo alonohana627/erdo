@@ -4,7 +4,9 @@
 #include "math/Rational.h"
 #include <algorithm>
 #include <concepts>
+#include <iostream>
 #include <mutex>
+#include <omp.h>
 #include <omp_llvm.h>
 #include <vector>
 
@@ -20,7 +22,7 @@ class Vector {
 public:
   // Constructor
   constexpr Vector() : _vec(), _mutex() {}
-  constexpr explicit Vector(const std::vector<T> &vector)  : _vec(vector) {}
+  constexpr explicit Vector(const std::vector<T> &vector) : _vec(vector) {}
 
   // Destructor
   ~Vector() = default;
@@ -57,10 +59,10 @@ public:
 
   // [] operator for non-const objects with bounds check
   T &operator[](size_t index) {
-    std::lock_guard<std::mutex> lock(_mutex);
-    if (index >= _vec.size()) {
-      throw std::out_of_range("Index out of range.");
-    }
+    // std::lock_guard<std::mutex> lock(_mutex);
+    // if (index >= _vec.size()) {
+    //   throw std::out_of_range("Index out of range.");
+    // }
     return _vec[index];
   }
 
@@ -73,20 +75,23 @@ public:
     return _vec[index];
   }
 
-  constexpr T dot(Vector<T> other, T summit = 0) const {
+  T dot(Vector<T> other, T summit = 0) const {
+    size_t i;
     if (other.getLength() != this->getLength()) {
       throw std::invalid_argument("The length of the vectors are NOT equal!!");
     }
     T sum = summit;
 
-#pragma omp parallel for 
-    for (size_t i = 0; i < this->getLength(); i++) {
-      sum += this->_vec[i] * other[i];
+#pragma omp parallel shared(sum) 
+    {
+#pragma omp for private(i) reduction(+ : sum) nowait
+      for (i = 0; i < this->getLength(); i++) {
+        sum += this->operator[](i) * other[i];
+      }
     }
 
     return sum;
   }
-
   constexpr size_t getLength() const { return _vec.size(); }
 
 private:

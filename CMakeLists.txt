@@ -7,6 +7,11 @@ set(VCPKG_TOOLCHAIN      "D:/vcpkg/scripts/buildsystems/vcpkg.cmake")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -Wall")
 set(CMAKE_BUILD_TYPE Debug)
 
+find_package(OpenMP)
+set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS} -save-temps -O3")
+set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
+
 # vcpkg dependencies
 # find_package(ZLIB REQUIRED)
 # include_directories(${ZLIB_INCLUDE_DIRS})
