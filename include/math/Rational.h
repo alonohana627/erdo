@@ -1,7 +1,6 @@
 #ifndef ERDO_RATIONAL_H
 #define ERDO_RATIONAL_H
 
-#include "erdo.h"
 #include "math/Arithmetic.h"
 #include <concepts>
 #include <stdexcept>

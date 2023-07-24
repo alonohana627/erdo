@@ -1,4 +1,4 @@
-#include "math/Rational.h"
+#include "erdo.h"
 #include "gtest/gtest.h"
 
 TEST(RationalTest, BasicTest) {
