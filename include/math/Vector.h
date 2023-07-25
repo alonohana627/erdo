@@ -21,6 +21,12 @@ template <typename T>
 class Vector {
 public:
   // Constructor
+  constexpr Vector(size_t vecSize, T fillValue = static_cast<T>(0)): _mutex() {
+    this->_vec = std::vector<T>(vecSize);
+
+    std::fill(this->_vec.begin(), this->_vec.end(), fillValue);
+  }
+
   constexpr Vector() : _vec(), _mutex() {}
   constexpr explicit Vector(const std::vector<T> &vector) : _vec(vector) {}
 
@@ -82,7 +88,7 @@ public:
     }
     T sum = summit;
 
-#pragma omp parallel shared(sum) 
+#pragma omp parallel shared(sum)
     {
 #pragma omp for private(i) reduction(+ : sum) nowait
       for (i = 0; i < this->getLength(); i++) {

@@ -14,6 +14,16 @@ TEST(VectorTest, BasicTest) {
   EXPECT_EQ(vec[1], erdo::Rational<int>(1, 2));
 }
 
+TEST(VectorTest, ConstructorByLength) {
+  const erdo::Vector<double> vec{5, 10.0};
+
+  EXPECT_EQ(vec[0], 10.0);
+  EXPECT_EQ(vec[1], 10.0);
+  EXPECT_EQ(vec[2], 10.0);
+  EXPECT_EQ(vec[3], 10.0);
+  EXPECT_EQ(vec[4], 10.0);
+}
+
 TEST(VectorTest, DotProduct) {
   using erdo::Vector;
   long long int num = 0L;

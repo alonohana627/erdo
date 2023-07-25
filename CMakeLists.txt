@@ -9,7 +9,7 @@ set(CMAKE_BUILD_TYPE Debug)
 
 find_package(OpenMP)
 set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS} -save-temps -O3")
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS} -O3")
 set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
 
 # vcpkg dependencies
@@ -47,3 +47,9 @@ include_directories(tests "${gtest_SOURCE_DIR}/include")
 add_executable(VectorTest tests/VectorTest.cpp)
 target_link_libraries(VectorTest PRIVATE GTest::gtest GTest::gtest_main GTest::gmock GTest::gmock_main)
 add_test(NAME VectorTest COMMAND VectorTest)
+
+# Matrix Test
+include_directories(tests "${gtest_SOURCE_DIR}/include")
+add_executable(MatrixTest tests/MatrixTest.cpp)
+target_link_libraries(MatrixTest PRIVATE GTest::gtest GTest::gtest_main GTest::gmock GTest::gmock_main)
+add_test(NAME MatrixTest COMMAND MatrixTest)

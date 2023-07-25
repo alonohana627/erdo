@@ -4,6 +4,7 @@
 #include "math/Arithmetic.h"
 #include "math/Rational.h"
 #include "math/Vector.h"
+#include "math/Matrix.h"
 
 namespace erdo{
 }
