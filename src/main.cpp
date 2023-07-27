@@ -1,27 +1,20 @@
-#include "math/Rational.h"
-#include <iostream>
+#include "erdo.h"
+#include <chrono>
 #include <memory>
+#include <thread>
 
-
-using ErdoRational = erdo::Rational<int>;
-using UniqueRational = std::unique_ptr<ErdoRational>;
-
-UniqueRational increaseRational(UniqueRational rat) {
-  rat->plusplus();
-  return rat;
-}
 
 int main() noexcept {
-  erdo::Rational<int> r{1, 2};
+  erdo::setInfoTemplate([=](const std::string &infoForTemplate) {
+    const auto now = std::chrono::system_clock::now();
+    const std::time_t t_c = std::chrono::system_clock::to_time_t(now);
+    return "nadav " +  std::to_string(t_c);
+  });
+  erdo::log("Wassup Man", erdo::LoggerSeverity::INFO);
+  erdo::log("Wassup Man2", erdo::LoggerSeverity::ERROR);
 
-  {
-    auto rationalAsUnique = std::make_unique<ErdoRational>(r);
-    rationalAsUnique = increaseRational(std::move(rationalAsUnique));
-    std::cout << rationalAsUnique->toString() << std::endl;
-  }
-
-  r.inverse();
-
-  std::cout << r.toString() << std::endl;
+  erdo::logger.~Logger();
+  
+  erdo::log("Wassup Man2", erdo::LoggerSeverity::ERROR);
   return 0;
 }

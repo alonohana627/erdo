@@ -23,7 +23,7 @@ set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS
 # find_library(UWEBSOCKETS_LIBRARIES NAMES uSockets)
 
 include_directories(src include)
-add_executable(Main src/main.cpp)
+add_executable(Main src/logger.cpp src/main.cpp)
 # target_link_libraries(Main ${ZLIB_LIBRARIES} fmt::fmt-header-only libuv::uv ${UWEBSOCKETS_LIBRARIES})
 # target_include_directories(Main PRIVATE ${UWEBSOCKETS_INCLUDE_DIRS})
 

@@ -10,6 +10,7 @@
 namespace erdo {
 
 // I don't like concepts. From now on - no concepts.
+// (Maybe I will change my mind)
 template <typename T, size_t rowSize = 1, size_t colSize = 1> class Matrix {
 public:
   constexpr Matrix();
@@ -80,7 +81,7 @@ public:
     return mult<realColSize>(mat);
   }
 
-  Matrix<T, rowSize, colSize>
+  constexpr Matrix<T, rowSize, colSize>
   operator+(const Matrix<T, rowSize, colSize> &other) {
     Matrix<T, rowSize, colSize> result;
     for (size_t i = 0; i < rowSize; ++i) {
@@ -91,7 +92,7 @@ public:
     return result;
   }
 
-  Matrix<T, rowSize, colSize>
+  constexpr Matrix<T, rowSize, colSize>
   operator-(const Matrix<T, rowSize, colSize> &other) {
     Matrix<T, rowSize, colSize> result;
     for (size_t i = 0; i < rowSize; ++i) {
@@ -102,7 +103,7 @@ public:
     return result;
   }
 
-  Matrix operator*(const T &scalar) const {
+  constexpr Matrix operator*(const T &scalar) const {
     Matrix result;
     for (size_t i = 0; i < rowSize; ++i) {
       for (size_t j = 0; j < colSize; ++j) {

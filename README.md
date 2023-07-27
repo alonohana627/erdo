@@ -55,3 +55,6 @@ In the future I hope I will do:
 - `erdo::Container`.
 - `erdo::Hash`, `erdo::HashMap`.
 - `erdo::Stack`, `erdo::Queue`, `erdo::LinkedList`, `erdo::DynamicArray`.
+
+### Logger
+
