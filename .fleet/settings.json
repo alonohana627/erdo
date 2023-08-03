@@ -1,0 +1,6 @@
+{
+    "excluded": [
+        "build",
+        "erdo_cppcheck-cppcheck-build-dir"
+    ]
+}

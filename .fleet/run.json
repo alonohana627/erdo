@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "command",
+            "name": "Build",
+            "workingDir": "$PROJECT_DIR$",
+            "args": [
+                "$PROJECT_DIR$\\build.ps1"
+            ],
+            "program": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        },
+        {
+            "type": "command",
+            "name": "Run Tests",
+            "workingDir": "$PROJECT_DIR$",
+            "args": [
+                "$PROJECT_DIR$\\run_tests.ps1"
+            ],
+            "dependsOn": ["Build"],
+            "program": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        },
+        
+    ]
+}
