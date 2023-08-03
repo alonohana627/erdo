@@ -125,7 +125,7 @@ private:
   mutable LoggerSeverity loggerSeverity;
   mutable std::mutex _mutex;
   std::shared_ptr<std::ostream> outputStream;
-  LoggerMessageTemplate loggerMessageTemplate{};
+  LoggerMessageTemplate loggerMessageTemplate;
 };
 
 static Logger logger{};

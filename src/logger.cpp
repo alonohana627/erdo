@@ -1,4 +1,4 @@
-#include "erdo.h"
+#include "logger/logger.h"
 
 void erdo::log(std::string stringToLog, erdo::LoggerSeverity severity) {
   erdo::logger.log(std::move(stringToLog), severity);

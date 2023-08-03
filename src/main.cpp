@@ -1,5 +1,4 @@
 #include "erdo.h"
-#include <chrono>
 #include <memory>
 #include <thread>
 
@@ -12,9 +11,17 @@ int main() noexcept {
   });
   erdo::log("Wassup Man", erdo::LoggerSeverity::INFO);
   erdo::log("Wassup Man2", erdo::LoggerSeverity::ERROR);
-
-  erdo::logger.~Logger();
-  
   erdo::log("Wassup Man2", erdo::LoggerSeverity::ERROR);
+
+  std::vector<int, erdo::ErdoCator<int>> vec{1,2,3};
+
+  std::cout << vec[0] << std::endl;
+
+  auto vec2 = std::move(vec);
+
+  vec2[0] = 10;
+
+  std::cout << vec2[0] << std::endl;
+
   return 0;
 }

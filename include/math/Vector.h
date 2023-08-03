@@ -7,7 +7,6 @@
 #include <iostream>
 #include <mutex>
 #include <omp.h>
-#include <omp_llvm.h>
 #include <vector>
 
 namespace erdo {

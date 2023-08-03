@@ -6,6 +6,7 @@
 #include "math/Rational.h"
 #include "math/Vector.h"
 #include "logger/logger.h"
+#include "allocator/erdo_cator.h"
 
 namespace erdo {} // namespace erdo
 
