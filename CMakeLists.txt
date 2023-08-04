@@ -12,20 +12,8 @@ set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS} -O3")
 set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
 
-# vcpkg dependencies
-# find_package(ZLIB REQUIRED)
-# include_directories(${ZLIB_INCLUDE_DIRS})
-
-# find_package(fmt CONFIG REQUIRED)
-# find_package(libuv CONFIG REQUIRED)
-
-# find_path(UWEBSOCKETS_INCLUDE_DIRS "uwebsockets/App.h")
-# find_library(UWEBSOCKETS_LIBRARIES NAMES uSockets)
-
 include_directories(src include lib)
 add_executable(Main src/logger.cpp src/main.cpp)
-# target_link_libraries(Main ${ZLIB_LIBRARIES} fmt::fmt-header-only libuv::uv ${UWEBSOCKETS_LIBRARIES})
-# target_include_directories(Main PRIVATE ${UWEBSOCKETS_INCLUDE_DIRS})
 
 # ###########
 # # TESTING #
