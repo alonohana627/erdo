@@ -7,6 +7,7 @@
 #include "math/Vector.h"
 #include "logger/logger.h"
 #include "allocator/erdo_cator.h"
+#include "metaprogramming/basic_type_traits.h"
 
 namespace erdo {} // namespace erdo
 

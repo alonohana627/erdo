@@ -9,8 +9,10 @@
 
 namespace erdo {
 
-
 // Very basic Allocator in C++.
+// Simply calls the genral `operator new` of C++.
+// Can also use `malloc` or `free` and then it will be a...
+// MALLOCATOR!
 template <typename T> class ErdoCator {
 public:
   using value_type = T;
@@ -34,11 +36,6 @@ public:
   void deallocate(T *p, std::size_t n) noexcept {
     ::operator delete(p);
   }
-
-  // C++20 changes: add template constructors and propagation methods
-  using propagate_on_container_copy_assignment = std::true_type;
-  using propagate_on_container_move_assignment = std::true_type;
-  using propagate_on_container_swap = std::true_type;
 
   template <typename U> struct rebind {
     using other = ErdoCator<U>;

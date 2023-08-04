@@ -53,3 +53,9 @@ include_directories(tests "${gtest_SOURCE_DIR}/include")
 add_executable(MatrixTest tests/MatrixTest.cpp)
 target_link_libraries(MatrixTest PRIVATE GTest::gtest GTest::gtest_main GTest::gmock GTest::gmock_main)
 add_test(NAME MatrixTest COMMAND MatrixTest)
+
+# Basic Type Traits Test
+include_directories(tests "${gtest_SOURCE_DIR}/include")
+add_executable(BasicTypeTraitsTest tests/BasicTypeTraitsTest.cpp)
+target_link_libraries(BasicTypeTraitsTest PRIVATE GTest::gtest GTest::gtest_main GTest::gmock GTest::gmock_main)
+add_test(NAME BasicTypeTraitsTest COMMAND BasicTypeTraitsTest)
