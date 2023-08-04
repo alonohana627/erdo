@@ -1,4 +1,4 @@
-#include "erdo.h"
+#include "math/Matrix.h"
 #include <gtest/gtest.h>
 // TODO: constructor and move tests.
 TEST(MatrixTest, DefaultConstructor) {
