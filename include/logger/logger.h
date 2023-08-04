@@ -22,18 +22,10 @@ public:
   ~Logger() = default;
 
   // Copy constructor
-  Logger(const Logger &other) {
-    std::lock_guard<std::mutex> lock(other._mutex);
-    loggerSeverity = other.loggerSeverity;
-    outputStream = other.outputStream;
-  }
+  Logger(const Logger &other);
 
   // Move constructor
-  Logger(Logger &&other) {
-    std::lock_guard<std::mutex> lock(other._mutex);
-    loggerSeverity = other.loggerSeverity;
-    outputStream = std::move(other.outputStream);
-  }
+  Logger(Logger &&other);
 
   // Copy assignment operator
   Logger &operator=(const Logger &other) {
@@ -65,7 +57,7 @@ public:
     this->loggerSeverity = LoggerSeverity;
   }
 
-  // Debugger Templates
+  // Templates
   void setDebugTemplate(stringToStringCallback callback) {
     std::lock_guard<std::mutex> lock(this->_mutex);
     this->loggerMessageTemplate.setDebugTemplate(callback);
@@ -91,35 +83,7 @@ public:
     outputStream = newOutputStream;
   }
 
-  void log(std::string stringToLog, LoggerSeverity severity) {
-    std::lock_guard<std::mutex> lock(_mutex);
-
-    if (severity < loggerSeverity) {
-      return;
-    }
-
-    switch (severity) {
-    case LoggerSeverity::DEBUG:
-      (*outputStream) << loggerMessageTemplate.getDebugTemplate()(stringToLog)
-                      << std::endl;
-      break;
-    case LoggerSeverity::INFO:
-      (*outputStream) << loggerMessageTemplate.getInfoTemplate()(stringToLog)
-                      << std::endl;
-      break;
-    case LoggerSeverity::WARNING:
-      (*outputStream) << loggerMessageTemplate.getWarningTemplate()(stringToLog)
-                      << std::endl;
-      break;
-    case LoggerSeverity::ERROR:
-      (*outputStream) << loggerMessageTemplate.getErrorTemplate()(stringToLog)
-                      << std::endl;
-      break;
-
-    default:
-      break;
-    }
-  }
+  void log(std::string stringToLog, LoggerSeverity severity);
 
 private:
   mutable LoggerSeverity loggerSeverity;
